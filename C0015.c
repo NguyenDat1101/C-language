@@ -39,6 +39,14 @@ nhaplai1:
   getchar();
 }
 
+void hoanvi(struct SinhVien *a, struct SinhVien *b)
+{
+  struct SinhVien tam;
+  tam = *a;
+  *a = *b;
+  *b = tam;
+}
+
 void nhapnhieusinhvien(int n, struct SinhVien sv[])
 {
   for (int i=0; i<n; i++)
@@ -51,6 +59,14 @@ void xuatsinhvien(struct SinhVien sv[], int n)
 {
   printf("*****************************************\n");
   printf("* Ho va Ten || nam sinh || mssv || diem *\n");
+
+  for(int i=0; i<n; i++)
+  {
+    for (int j=i+1; j<n; j++)
+    {
+      if (sv[i].diem < sv[j].diem) hoanvi(&sv[i], &sv[j]);
+    }
+  }
 
   for(int i=0; i<n; i++)
   {
